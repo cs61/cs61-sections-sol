@@ -1,4 +1,4 @@
-PROGRAMS = factorial stacksmash stacksmash.safe attackme
+PROGRAMS = factorial stacksmash stacksmash.safe attackme unattackable
 all: $(PROGRAMS)
 
 O = 0
@@ -17,6 +17,9 @@ factorial: factorial.o hexdump.o
 	$(CC) $(CFLAGS) $(UNSAFE_CFLAGS) $(O) -o $@ $^
 
 attackme: attackme.o evil.o hexdump.o
+	$(CC) $(CFLAGS) $(UNSAFE_CFLAGS) -o $@ $^
+
+unattackable: unattackable.o evil.o hexdump.o
 	$(CC) $(CFLAGS) $(UNSAFE_CFLAGS) -o $@ $^
 
 stacksmash: stacksmash.o hexdump.o
